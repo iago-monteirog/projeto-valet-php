@@ -20,6 +20,6 @@ class Estacionamento
         {
             if($ticket->$id == $id) return $ticket;
         }
-        return null;
+        return null;    
     }
 }
