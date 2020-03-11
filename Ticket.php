@@ -1,52 +1,54 @@
 <?php
 
-require_once("Veiculo.php");
-
-class Ticket
+class Ticket 
 {
-    private static int $id = 0;
-    private Veiculo $veiculo;
-    private DateTime $entrada;
-    private DateTime $saida;
-    private double $preco;
+    private static $id = 0;
+    private $veiculo;
+    private $entrada;
+    private $saida;
+    private $preco;
 
-    public function __construct(Veiculo $veiculo, $entrada = null)
+    public function __construct()
     {
-        Ticket::$id++;
         $this->veiculo = $veiculo;
-        $this->entrada = $entrada == null ? new DateTime() : $entrada;
+        $this->entrada = new DateTime();
+        self::$id++; 
     }
 
-    public static function getId(): int
+    public function getId()
     {
         return self::$id;
     }
 
-    public function getVeiculo(): Veiculo
+    public function getVeiculo()
     {
         return $this->veiculo;
     }
 
-    public function getEntrada(): DateTime
+    public function getEntrada()
     {
         return $this->entrada;
     }
 
-    public function getSaida(): DateTime
+    public function getSaida()
     {
         return $this->saida;
     }
 
-    public function registraSaida(): void
+    public function getPreco()
+    {
+        return $this->preco;
+    }
+
+    public function registrarSaida()
     {
         $this->saida = new DateTime();
         $diff = $this->entrada->diff($this->saida);
-        $this->preco = $this->calculaValorEstacionamento($diff);
+        $this->preco= $this->calculaPreco($diff);
     }
 
-    private function calculaValorEstacionamento(DateInterval $diff)
+    private function calculaPreco($diff)
     {
         return $diff->h * 3;
     }
 }
-

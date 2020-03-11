@@ -2,11 +2,11 @@
 
 class Veiculo
 {
-    private string $placa;
-    private string $marca;
-    private string $modelo;
+    private $placa;
+    private $marca;
+    private $modelo;
 
-    public function __construct(string $placa, string $marca, string $modelo)
+    public function __construct($placa, $marca, $modelo)
     {
         $this->placa = $placa;
         $this->marca = $marca;
